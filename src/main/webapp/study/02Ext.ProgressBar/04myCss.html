@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>手动进度条</title>
+    <link rel="stylesheet" type="text/css" href="../../ext-4.2.1/resources/css/ext-all.css"/>
+    <STYLE TYPE="text/css">
+        .custom {
+            height: 170px;
+            background: blue;
+        }
+
+        .custom .x-progress-bar {
+            height: 170px;
+            background: red;
+        }
+    </STYLE>
+    <script type="text/javascript" src="../../ext-4.2.1/bootstrap.js"></script>
+    <script type="text/javascript" src="../../ext-4.2.1/locale/ext-lang-zh_CN.js"></script>
+    <script type="text/javascript">
+        Ext.onReady(function () {
+            var progressBar = new Ext.ProgressBar({
+                width: 300,//设定进度条的宽度
+                renderTo: 'progressBar',
+                cls: 'custom'//使用自定义样式
+            });
+            progressBar.wait({
+                duration: 10000,//进度条持续更新10秒钟
+                interval: 1000,//每1秒钟更新一次
+                text: '进度条上的文本信息',
+                increment: 10//进度条分10次更新完毕
+            });
+        });
+    </script>
+</head>
+<body>
+<div id='progressBar'></div>
+</body>
+</html>

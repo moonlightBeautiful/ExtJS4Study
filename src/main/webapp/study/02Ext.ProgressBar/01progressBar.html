@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>进度条</title>
+    <link rel="stylesheet" type="text/css" href="../../ext-4.2.1/resources/css/ext-all.css"/>
+    <script type="text/javascript" src="../../ext-4.2.1/bootstrap.js"></script>
+    <script type="text/javascript" src="../../ext-4.2.1/locale/ext-lang-zh_CN.js"></script>
+    <script type="text/javascript">
+        Ext.onReady(function () {
+            var progressBar = new Ext.ProgressBar({
+                text: '进度条上显示的字',//进度条上显示的文字
+                width: 300,//设定进度条的宽度
+                //以id为ProgressBar1的div作为进度条组件的容器
+                renderTo: 'ProgressBar1'
+                //renderTo:document.getElementById('ProgressBar1')
+            });
+        });
+    </script>
+</head>
+<body>
+<div id='ProgressBar1'></div>
+</body>
+</html>
