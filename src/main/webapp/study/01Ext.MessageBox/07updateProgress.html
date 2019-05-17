@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>信息提示框实例的updateText()方法</title>
+    <link rel="stylesheet" type="text/css" href="../../ext-4.2.1/resources/css/ext-all.css"/>
+    <script type="text/javascript" src="../../ext-4.2.1/bootstrap.js"></script>
+    <script type="text/javascript" src="../../ext-4.2.1/locale/ext-lang-zh_CN.js"></script>
+    <script type="text/javascript">
+        Ext.onReady(function () {
+            var msgBox = Ext.MessageBox.show({
+                title: '提示',
+                msg: '动态跟新的进度条和信息文字',
+                modal: true,
+                width: 300,
+                progress: true
+            })
+
+            var count = 0;//滚动条被刷新的次数
+            var percentage = 0;//进度百分比
+            var progressText = '';//进度条信息
+
+            var task = {
+                run: function () {
+                    count++;
+                    //计算进度
+                    percentage = count / 10;
+                    //生成进度条文字
+                    progressText = '当前完成度：' + percentage * 100 + "%";
+                    //更新信息提示对话框
+                    msgBox.updateProgress(percentage, progressText,
+                        '当前时间：' + Ext.util.Format.date(new Date(), 'Y-m-d g:i:s A'));
+                    //刷新10次后关闭信息提示对话框
+                    if (count > 10) {
+                        Ext.TaskManager.stop(task);
+                        msgBox.hide();
+                    }
+
+                },
+                interval: 1000
+            }
+
+            Ext.TaskManager.start(task);
+        });
+    </script>
+</head>
+<body>
+alert()、confirm()、prompt()、wait()、show()方法是产生一个信息提示框实例 <br>
+updateText()是信息提示框的实例的方法，更新信息提示框的的提示信息。
+updateProgress()是信息提示框的实例的方法，更新信息提示框的的进度条信息。
+</body>
+</html>

@@ -2,9 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>updateText是实例的方法</title>
+    <title>信息提示框实例的updateText()方法</title>
+    <link rel="stylesheet" type="text/css" href="../../ext-4.2.1/resources/css/ext-all.css"/>
+    <script type="text/javascript" src="../../ext-4.2.1/bootstrap.js"></script>
+    <script type="text/javascript" src="../../ext-4.2.1/locale/ext-lang-zh_CN.js"></script>
+    <script type="text/javascript">
+        Ext.onReady(function () {
+            var msgBox = Ext.MessageBox.show({
+                title: '提示',
+                msg: '动态跟新的信息文字',
+                modal: true,
+                buttons: Ext.Msg.OK,
+                fn: function () {
+                    //停止定时任务
+                    Ext.TaskManager.stop(task);
+                }
+            })
+            //Ext.TaskManager是一个功能类，用来定时执行程序，
+            //在这里我们使用它来定时触发提示信息的更新。
+            var task = {
+                run: function () {
+                    msgBox.updateText('会动的时间：' + Ext.util.Format.date(new Date(), 'Y-m-d g:i:s A'));
+                },
+                interval: 1000
+            }
+            Ext.TaskManager.start(task);
+        });
+    </script>
 </head>
 <body>
-alert()、confirm()、prompt()、wait()、show()方法是产生一个信息提示框实例
+alert()、confirm()、prompt()、wait()、show()方法是产生一个信息提示框实例 <br>
+updateText()是信息提示框的实例，更新信息提示框的的提示信息。
 </body>
 </html>
